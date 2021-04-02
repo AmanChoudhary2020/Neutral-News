@@ -6,3 +6,5 @@ This repository contains only my contributions, which were in the front end usin
 To see the rest of the project, go here: https://github.com/nirmitashar/NeutralNews
 
 Demo: https://synthesized.herokuapp.com/
+
+https://devpost.com/software/neutral-news
