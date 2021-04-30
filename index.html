@@ -24,7 +24,7 @@
   color: #fff;
   height: 256px;
   width: 512px;
-  background: url('') center / cover;
+  //background: url('') center / cover;
 }
 img{
   height: 256px;
@@ -124,5 +124,86 @@ img{
  v-for="article in cons" v-bind:card_info="article"> </card>
 </div>
 </div>
+
+
+<script>
+ var libs = [];
+ var cons = [];
+ function article (link,image,title){
+   this.link = link;
+   this.image = image;
+   this.title = title;
+ }
+
+function myFunction()
+{
+  var x = document.getElementById("sample6").value
+  console.log(x)
+  bustdown(x)
+}
+
+bustdown("politics")
+function bustdown(topic) {
+  console.log(topic)
+  console.log(topic)
+  var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        $.ajax({
+          type: "POST",
+          url: $SCRIPT_ROOT + "/topicapi",
+          data: topic,
+          success: function(data){
+            console.log("length:" + data.length)
+            libCol.libs = []
+             consCol.cons = []
+            for(var i = 0; i<data.length/2; i+=3){
+              console.log(i)
+              var card_info = new article(data[i],data[i+1],data[i+2])
+              libCol.libs.push(card_info)
+             console.log(libs)
+            }
+            for(var i = 9; i<data.length; i+=3){
+              console.log(i)
+              var card_info = new article(data[i],data[i+1],data[i+2])
+              consCol.cons.push(card_info)
+              console.log(cons)
+            }
+          }
+        });
+}
+Vue.component('card', {
+  props: ['card_info'],
+  delimiters : ['[[', ']]'],
+  template: `
+<div class="card">
+  <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <img v-bind:src="card_info.image">
+  </div>
+  <div class="mdl-card__supporting-text">
+   [[card_info.title]]
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a target="_blank" v-bind:href="card_info.link" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      Read More
+    </a>
+  </div>
+</div>
+<br/>
+</div>
+  `
+})
+libCol = new Vue({
+  el: '#col1',
+  data: {
+    libs: []
+  }
+})
+consCol = new Vue ({
+  el:"#col2",
+  data: {
+    cons: []
+  }
+})
+</script>
 </body>
 </html>
