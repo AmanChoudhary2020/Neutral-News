@@ -1,7 +1,7 @@
 # Neutral-News
 Web application that categorizes news articles as either liberal or conservative, so the user has a more balanced news feed to form political opinions from. </br>
 
-This repository contains only my contributions, which were in the front end using HTML/CSS/Javascript and the Material Design framework (https://getmdl.io/). 
+This repository contains only my contributions, which were in the front end using HTML/CSS/Javascript and the Material Design framework (https://getmdl.io/), all embedded in the index.html file.  
 
 To see the rest of the project, go here: https://github.com/nirmitashar/NeutralNews
 
